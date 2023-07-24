@@ -1,0 +1,22 @@
+{
+  "name": "bun-opentelemetry-issue-repro",
+  "module": "index.ts",
+  "type": "module",
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "bun": "OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:58051 OTEL_SERVICE_NAME=bun-opentelemetry-issue-repro NODE_ENV=production bun app/index.ts",
+    "node": "OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:58051 OTEL_SERVICE_NAME=bun-opentelemetry-issue-repro NODE_ENV=production node --experimental-loader=@opentelemetry/instrumentation/hook.mjs node/index.mjs",
+    "test-server": "bun test-server.ts"
+  },
+  "dependencies": {
+    "@opentelemetry/api": "^1.4.1",
+    "@opentelemetry/auto-instrumentations-node": "^0.38.0",
+    "@opentelemetry/exporter-trace-otlp-proto": "^0.41.0",
+    "@opentelemetry/sdk-node": "^0.41.0"
+  }
+}
